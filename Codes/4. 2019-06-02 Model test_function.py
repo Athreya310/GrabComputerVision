@@ -8,7 +8,7 @@ import time
 
 def generate_car_names():
     # Change directory to the data folder
-    os.chdir(x + r'\compvision\Raw Data')
+    os.chdir(x + r'\GrabComputerVision\Raw Data')
     
     # Create a list with the model names
     list_model = []
@@ -22,7 +22,7 @@ def generate_car_names():
 
 def load_classifier():
     # Change directory to the model specs folder
-    os.chdir(x + r'\compvision\Model Specs')
+    os.chdir(x + r'\GrabComputerVision\Model Specs')
     # Load json and create model
     json_file = open('modelvar.json', 'r')
     loaded_model_json = json_file.read()
@@ -37,7 +37,7 @@ def load_classifier():
 def output_classifier(list_model,classifier,top_n):
     df = pd.DataFrame(columns=['Car Make','Probability','Alt1','Alt2'])
     # Change directory to the test images folder
-    os.chdir(x + r'\compvision\Raw Data\cars_test')
+    os.chdir(x + r'\GrabComputerVision\Raw Data\cars_test')
     filelist=os.listdir()
     # For each image in the test folder
     for j in filelist:

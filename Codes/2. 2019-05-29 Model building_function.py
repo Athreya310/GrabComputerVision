@@ -9,7 +9,7 @@ from keras.preprocessing.image import ImageDataGenerator
 
 def load_image(train_path, valid_path):
     # Change directory to the data folder
-    os.chdir(x + r'\compvision\Raw Data')
+    os.chdir(x + r'\GrabComputerVision\Raw Data')
     # This is image augmentation. It alters the images creating a larger sample to test on. This reduces overfitting
     # Rescale pixel values between 0 and 1 instead of the regular 255
     train_datagen = ImageDataGenerator(rescale = 1./255,
@@ -72,7 +72,7 @@ def map_classifier(classifier, train, validation):
 def save_classifier(classifier):
     # serialize model to JSON
     # Change directory to the model specs folder
-    os.chdir(x + r'\compvision\Model Specs')
+    os.chdir(x + r'\GrabComputerVision\Model Specs')
     model_json = classifier.to_json()
     with open("modelvar.json", "w") as json_file:
         json_file.write(model_json)

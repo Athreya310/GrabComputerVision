@@ -10,7 +10,7 @@ from sklearn.metrics import recall_score
 
 def load_classifier():
     # Change directory to the model specs folder
-    os.chdir(x + r'\compvision\Model Specs')
+    os.chdir(x + r'\GrabComputerVision\Model Specs')
     # Load json and create model
     json_file = open('modelvar.json', 'r')
     loaded_model_json = json_file.read()
@@ -27,7 +27,7 @@ def basic_classifier(classifier):
     # Create dataframe to store results
     df = pd.DataFrame(columns=['Predicted','True'])
     # Change directory to the data folder
-    os.chdir(x + r'\compvision\Raw Data')
+    os.chdir(x + r'\GrabComputerVision\Raw Data')
     for i in range(196):
         # This rectifies index to be identical to class label.
         i = i + 1
@@ -36,7 +36,7 @@ def basic_classifier(classifier):
         filelist=os.listdir(r'data\validation_set\{}'.format(i))
         # For each image in the class folder
         for j in filelist:
-            string = x + r'\compvision\Raw Data\data\validation_set\{}\{}'.format(i,j)
+            string = x + r'\GrabComputerVision\Raw Data\data\validation_set\{}\{}'.format(i,j)
             # Load and process images to be tested
             test_image = image.load_img(string, target_size=(128,128))
             test_image = image.img_to_array(test_image)
@@ -66,7 +66,7 @@ def threshold_classifier(threshold,classifier):
     # Create dataframe to store results
     df = pd.DataFrame(columns=['Car Make','Accuracy'])
     # Change directory to the data folder
-    os.chdir(x + r'\compvision\Raw Data')
+    os.chdir(x + r'\GrabComputerVision\Raw Data')
     # This is the total images of all classes
     big_count = 0
     # This is the total images predicted accurately
@@ -84,7 +84,7 @@ def threshold_classifier(threshold,classifier):
         filelist=os.listdir(r'data\validation_set\{}'.format(i))
         # For each image in the class folder
         for j in filelist:
-            string = x + r'\compvision\Raw Data\data\validation_set\{}\{}'.format(i,j)
+            string = x + r'\GrabComputerVision\Raw Data\data\validation_set\{}\{}'.format(i,j)
             # Load and process images to be tested
             test_image = image.load_img(string, target_size=(128,128))
             test_image = image.img_to_array(test_image)
@@ -132,7 +132,7 @@ def top_classifier(top_n,classifier):
         filelist=os.listdir(r'data\validation_set\{}'.format(i))
         for j in filelist:
             # Load and process images to be tested
-            string = x + r'\compvision\Raw Data\data\validation_set\{}\{}'.format(i,j)
+            string = x + r'\GrabComputerVision\Raw Data\data\validation_set\{}\{}'.format(i,j)
             test_image = image.load_img(string, target_size=(128,128))
             test_image = image.img_to_array(test_image)
             test_image = np.expand_dims(test_image,axis=0)
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     top_models, df2, acc_top = top_classifier(5,c)
 
 # Write results to a text file
-os.chdir(x + r'\compvision\Model Specs')
+os.chdir(x + r'\GrabComputerVision\Model Specs')
 f= open("scores.txt","w+")
 f.write('1. This is the basic performance evaluation of the validation set:\n')
 f.write('-  The accuracy score is '+str(score_accuracy)+'.\n')

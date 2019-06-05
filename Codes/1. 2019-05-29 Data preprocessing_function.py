@@ -111,7 +111,7 @@ def model_test_data(imgs, bboxes):
         cv.imwrite(sort_path, sort_img)
 
 # Change directory to the data folder
-os.chdir(x + r'\compvision\Raw Data')
+os.chdir(x + r'\GrabComputerVision\Raw Data')
 
 if __name__ == '__main__':
 
