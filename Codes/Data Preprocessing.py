@@ -13,7 +13,7 @@ def create_folder(folder):
         os.makedirs(folder)
         
 # Part 1: Transforming the data from the raw files
-def transform_train_data():
+def extract_train_data():
     cars = scipy.io.loadmat('devkit/cars_train_annos')
     annotations = cars['annotations']
     annotations = np.transpose(annotations)
@@ -35,9 +35,9 @@ def transform_train_data():
         img = i[0][5][0]
         bboxes.append((bbox_x1, bbox_y1, bbox_x2, bbox_y2))
         imgs.append(img)
-    model_train_data(imgs, labels, bboxes)
+    transform_train_data(imgs, labels, bboxes)
 
-def transform_test_data():
+def extract_test_data():
     cars = scipy.io.loadmat('devkit/cars_test_annos')
     annotations = cars['annotations']
     annotations = np.transpose(annotations)
@@ -54,10 +54,10 @@ def transform_test_data():
         img = i[0][4][0]
         bboxes.append((bbox_x1, bbox_y1, bbox_x2, bbox_y2))
         imgs.append(img)
-    model_test_data(imgs, bboxes)
+    transform_test_data(imgs, bboxes)
 
 # Part 2: Saving the data into folders sorted by class
-def model_train_data(imgs, labels, bboxes):
+def transform_train_data(imgs, labels, bboxes):
     # This is where the raw images are saved
     raw_folder = 'cars_train'
     # Randomly select 80% of the images into the training set
@@ -94,7 +94,7 @@ def model_train_data(imgs, labels, bboxes):
         sort_img = cv.resize(src=crop_image, dsize=(img_height, img_width))
         cv.imwrite(sort_path, sort_img)
 
-def model_test_data(imgs, bboxes):
+def transform_test_data(imgs, bboxes):
     raw_folder = 'cars_test'
     sort_folder = 'data/test_set'
     num_samples = len(imgs)
@@ -121,5 +121,5 @@ if __name__ == '__main__':
     
     # parameters of the images
     img_width, img_height = 224, 224
-    transform_train_data()
-    transform_test_data()
+    extract_train_data()
+    extract_test_data()

@@ -1,1 +1,109 @@
-Describe the step by step here.
+This is a guide to set up the directory and run the program codes.
+Note: There are also comments in the code to guide the reader.
+
+
+
+Part 1 - Setting up the directories and adding the data files
+
+Download the GrabComputerVision folder from github to a local directory.
+Download the Stanford AI car dataset into the "GrabComputerVision\Raw Data" folder. This can be found at https://ai.stanford.edu/~jkrause/cars/car_dataset.html.
+Download 3 files - the training images (cars_test), testing images (cars_training), and the devkit (devkit) and unzip them within the raw data folder.
+
+
+
+Part 2 - Processing the data
+
+Run the program 'GrabComputerVision\Codes\Data Preprocessing.py'
+This program has 3 functions.
+
+i. create_folder
+Creates an empty folders in which the images to be trained on are to be stored upon being processed.
+There are 3 folders created - training, validation and test folders.
+
+ii. extract_train_data & extract_test_data
+Extracts key features (image name, label, bounding boxes) of each of the images from the devkit files for training and test sets.
+
+iii. transform_train_data & transform_test_data
+Transforms and migrates images from raw folders to the newly created folders for model training and testing.
+The images for training are split randomly in a 80/20 ratio for training/validation.
+Images are cropped and resized according to bounding boxes and written to the new folder.
+
+
+
+Part 3 - Developing a model to train the data
+
+Run the program 'GrabComputerVision\Codes\Model Building.py'
+This program has 4 functions.
+
+i. load_image
+Loads the images in the folder according to the needs of a Convoluted Neural Network (CNN).
+
+ii. create_classifier
+creates the CNN.
+
+iii. map_classifier
+Maps the classifier to the training set of images, and validates the results against the validation set.
+
+iv. save_classifier
+Saves the model and weights in json and h5 files, respectively.
+
+
+
+Part 4 - Assessing the performance of the model
+Run the program 'GrabComputerVision\Codes\Model Performance.py'
+This program has 4 functions.
+
+i. load_classifier
+Loads the classifier model and weights.
+
+ii. basic_classifier
+Produces a dataframe of predicted and true values of the validation set.
+Produces a confusion matrix, accuracy, precision and recall scores.
+
+iii. threshold_classifier
+Produces accuracy scores of each model and total sample for an adjustable threshold probability.
+E.g. if threshold is set to 0.8 in user defined argument, it will display accuracy of model when it is at least 80% certain of its prediction.
+
+iv. top_classifier
+Generates top n predicted results based on the model. The accuracy of the top n models can be tested.
+E.g. if n = 5, the function will display accuracy score of model if at least one of the 5 is the true car model of image.
+
+
+
+Part 5 - Testing the model on a new set of images + user interface
+Run the program 'GrabComputerVision\Codes\Model Testing.py'
+This program has 3 functions.
+
+i. generate_car_names
+Generates a list of all the car names in order.
+
+ii. load_classifier
+Loads the classifier model and weights.
+
+iii. output_classifier
+Generates the predicted car model, its probability and the two best alternative predictions.
+This can be used to test the accuracy of te test set. 
+Please replace the images in the "GrabComputerVision\Raw Data\data\test_set" folder with images you want to test.
+
+User interface
+This is a user friendly interface that will respond by describing the car model in the image.
+It will aso describe it's certainty of its prediction and offer potential alternative car models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
