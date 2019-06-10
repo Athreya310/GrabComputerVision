@@ -1,0 +1,63 @@
+
+Part A - Introduction and the Model
+
+The challenge of image recognition of car make and models is approached using a convoluted neural network (CNN) model.
+This model has a baseline accuracy of approximately 14% on a validation set.
+
+There are two variations to this model that can add value to the baseline results.
+
+The first is the threshold model. Since the CNN assigns a probability to each car model, we are able to determine the certainty with which each prediction is made.
+For example, this takes a user-specified threshold value, n, and only displays prediction where the model is at least n% certain of its prediction.
+This leads to marked improvements to the accuracy - more than doubles to approximately 31% for results where the model is at least 80% certain of its prediction.
+
+The second variation is the top_n model. Based on the probability assigned to each car model, we can also determine the most likely car models in the image.
+For example, this model takes a user-specified top n models and produces the accuracy of the model to to correctly predict the true car model based on its top n predictions.
+The top 5 model can accurately predict the true car make 34% of the time.
+
+With further refinements, the baseline model accuracy can potentially be improved upon. 
+With this, the accuracy of the 2 refined model can hopefully be near perfect, reducing error rates significantly in these application.
+
+The codes in this project are in the form of functions. This should hopefully ease the understanding, re-usability and flexibility of the code to be utilised under different conditions.
+The program guide file briefly describes each of the functions executed in the model.
+
+
+Part B - Applications of the Model
+
+This model has several potential applications. Two key applications that can be identified are ride identification and fraud prevention.
+
+App 1 - Ride Identification
+
+Firstly, the image recognition model can help riders find their drivers quicker. 
+This is particularly useful in heavily populated areas with dense traffic. 
+Under these conditions, users may find it difficult to pick out their drivers in a sea of vehicles that are bumper to bumper making it difficult to spot the vehicle license plate.
+This is even more concerning for the elderly or foreign tourists who may not be able to identify local car models based on a text description.
+A potential solution that this model offers is riders could hold out their phone to the cars on the road and the image recognition software will detect the right car in the crowd of cars immediately. 
+This will help riders scan the mass amount of cars on the road quicker when they have been notified that their driver has arrived.
+
+Another use case under ride identification application is digitizing designated Grab lounges in key hotspots in the city.
+Users in comfortable Grab lounges often have to glance around anxiously for fear their ride might drive by without them noticing. 
+They also often need to keep an eye on their phone to know how near their driver is.
+Grab lounges can be enhanced with this image recognition model.
+If the stand by the road outside the Grab lounge has an camera that captures the image of passing cars, it can identify the model of the car and match it to the car that a user in the Grab lounge has reserved.
+A notice can appear on a screen placed in the lounge with the name of the rider, notifying them that their ride has arrived.
+This is particularly useful in congested areas where drivers are nearby but could take a long time to actually reach the lounge.
+This application eases the waiting process, making for happier riders.
+
+App 2 - Fraud Prevention
+
+The second application is fraud prevention.
+As this is a matter close to the Grab organisation to protect the livelihood of honest drivers, the image recognition software could perhaps complement some of the current measures put in place.
+There have recently been reports of hackers gaming the Grab incentive system by creating fake accounts and generating fake rides.
+Such syndicates may have bots to automate the rides and and generate plenty of accounts that receive the Grab bonus.
+Grab has currently asked drivers to take a selfies at random to help prevent these cases of fraud.
+In addition to this measure, drivers who hit the bonus payment should be asked to take a picture of their car immediately after they hit their bonus amount.
+The process of recognising images of cars can be automated and is instantaneous through the model and can ideally be complemented with a license plate detection model.
+This will hopefully increase the efficiency and reduce the manpower needs in preventing fraud, particularly from large syndicates who do not own the cars registered to them.
+
+Another potential measure is getting riders to take pictures of the car before they get in. 
+This will hamper the efforts of those who create numerous fake accounts to pose as riders and take fake rides as they ay not be able to take photos instantly.
+Notably, this may burden honest users. Therefore, it should be complemented by three aspects:
+1. Done at random (Users only have to take a photo for 1 in 100 rides perhaps)
+2. Only for drivers that hit bonuses often (reduces the need for numerous photos and is much more targeted)
+3. Provide a voucher/GrabReward/GrabPoints for riders who have to take photos (incentivise riders to be part of the fraud prevention movement in Grab)
+These steps will hopefully impede fradulent practices in the use of Grab's services that aims to rewards honest drivers.
