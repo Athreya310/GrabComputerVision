@@ -6,6 +6,10 @@ from keras.models import model_from_json
 from keras.preprocessing import image
 import time
 
+# Set x as the working directory to the folder where the files are saved.
+x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+
+
 def generate_car_names():
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
@@ -60,9 +64,6 @@ def output_classifier(list_model,classifier,top_n):
         df = df.append({'Car Make':toptop[0],'Probability':k, 'Alt1':toptop[1], 'Alt2':toptop[2]}, ignore_index = True)
     return(df)
     
-# Set x as the working directory to the folder where the files are saved.
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
-
 if __name__ == '__main__':
     list_model = generate_car_names()
     c = load_classifier()

@@ -2,7 +2,7 @@
 Part A - Introduction and the Model
 
 The challenge of image recognition of car make and models is approached using a convoluted neural network (CNN) model.
-This model has a baseline accuracy of approximately 14% on a validation set.
+This model has a baseline accuracy of approximately 17% on a validation set.
 
 There are two variations to this model that can add value to the baseline results.
 
@@ -12,7 +12,7 @@ This leads to marked improvements to the accuracy - more than doubles to approxi
 
 The second variation is the top_n model. Based on the probability assigned to each car model, we can also determine the most likely car models in the image.
 For example, this model takes a user-specified top n models and produces the accuracy of the model to to correctly predict the true car model based on its top n predictions.
-The top 5 model can accurately predict the true car make 34% of the time.
+The top 5 model can accurately predict the true car make 39% of the time.
 
 With further refinements, the baseline model accuracy can potentially be improved upon. 
 With this, the accuracy of the 2 refined model can hopefully be near perfect, reducing error rates significantly in these application.

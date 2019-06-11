@@ -1,9 +1,9 @@
 1. This is the basic performance evaluation of the validation set:
--  The accuracy score is 0.14303253529772866.
--  The precision score is 0.1435025716913472.
--  The recall score is 0.15196092739917166.
+-  The accuracy score is 0.1712707182320442.
+-  The precision score is 0.17485751210241007.
+-  The recall score is 0.20307609894847878.
 
-2. The threshold model can achieve an accuracy of 0.3137931034482759 when the threshold is set to 0.8.
+2. The threshold model can achieve an accuracy of 0.3125 when the threshold is set to 0.8.
 
-3. The top_n model can achieve an accuracy of 0.3406998158379374 when number of top models is set to 5.
+3. The top_n model can achieve an accuracy of 0.3879680785758134 when number of top models is set to 5.
 

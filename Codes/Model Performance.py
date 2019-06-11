@@ -8,6 +8,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 
+# USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
+x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+
 def load_classifier():
     # Change directory to the model specs folder
     os.chdir(x + r'\GrabComputerVision\Model Specs')
@@ -162,9 +165,6 @@ def top_classifier(top_n,classifier):
     
     return(top_n, dft,big_accuracy_top)
     
-# Set x as the working directory to the folder where the files are saved.
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
-
 if __name__ == '__main__':
     c = load_classifier()
     df0,confusion_mat,score_accuracy,score_precision,score_recall = basic_classifier(c)

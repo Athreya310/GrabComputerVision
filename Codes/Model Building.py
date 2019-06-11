@@ -7,6 +7,9 @@ from keras.layers import Dense
 from keras.layers import Dropout
 from keras.preprocessing.image import ImageDataGenerator
 
+# USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
+x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+
 def load_image(train_path, valid_path):
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
@@ -79,9 +82,6 @@ def save_classifier(classifier):
     # serialize weights to HDF5
     classifier.save_weights("modelvar.h5")
     print("Saved model to disk")    
-
-
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
 
 if __name__ == '__main__':
     
