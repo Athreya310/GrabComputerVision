@@ -5,7 +5,7 @@ import cv2 as cv
 import random
 
 # USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+x = r'C:\Users\ASUS\Documents'
 
 # function that creates a folder if it does not exist
 def create_folder(folder):

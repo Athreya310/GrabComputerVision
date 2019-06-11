@@ -9,7 +9,7 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 
 # USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+x = r'C:\Users\ASUS\Documents'
 
 def load_classifier():
     # Change directory to the model specs folder

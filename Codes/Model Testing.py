@@ -7,7 +7,7 @@ from keras.preprocessing import image
 import time
 
 # Set x as the working directory to the folder where the files are saved.
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+x = r'C:\Users\ASUS\Documents'
 
 
 def generate_car_names():

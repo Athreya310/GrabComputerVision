@@ -8,7 +8,7 @@ from keras.layers import Dropout
 from keras.preprocessing.image import ImageDataGenerator
 
 # USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
-x = r'C:\Users\ASUS\Desktop\Data Science\Grab challenge'
+x = r'C:\Users\ASUS\Documents'
 
 def load_image(train_path, valid_path):
     # Change directory to the data folder
