@@ -56,7 +56,7 @@ def extract_test_data():
         imgs.append(img)
     transform_test_data(imgs, bboxes)
 
-# Part 2: Saving the data into folders sorted by class
+# Part 2: Transforming and saving the data into folders sorted by class
 def transform_train_data(imgs, labels, bboxes):
     # This is where the raw images are saved
     raw_folder = 'cars_train'
