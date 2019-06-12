@@ -39,7 +39,7 @@ i. load_image
 Loads the images in the folder according to the needs of a Convoluted Neural Network (CNN).
 
 ii. create_classifier
-creates the CNN.
+Creates the CNN.
 
 iii. map_classifier
 Maps the classifier to the training set of images, and validates the results against the validation set.
