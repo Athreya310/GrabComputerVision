@@ -12,7 +12,7 @@ def create_folder(folder):
     if os.path.exists(folder) == False:
         os.makedirs(folder)
         
-# Part 1: Transforming the data from the raw files
+# Part 1: Extracting the data from the raw files
 def extract_train_data():
     cars = scipy.io.loadmat('devkit/cars_train_annos')
     annotations = cars['annotations']
