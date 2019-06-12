@@ -1,2 +1,15 @@
-txt
-this has been edited
+Folder structure in the raw data folder should be as follows (before running the code):
+
+Raw Data
+
+-- cars_test
+
+-- cars_train
+
+-- devkit
+
+-- car_devkit.tgz
+
+-- cars_test.tgz
+
+-- cars_train.tgz

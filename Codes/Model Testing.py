@@ -9,7 +9,7 @@ import time
 # Set x as the working directory to the folder where the files are saved.
 x = r'C:\Users\ASUS\Documents'
 
-
+# This function generates a list of all cars model names for use in descriptive output later
 def generate_car_names():
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
@@ -38,11 +38,13 @@ def load_classifier():
     print("Loaded model from disk")
     return(classifier)
 
+# Function arguments: list_model - list of car model names, classifier - classifier model name, top_n = integer to retun top n likeliest prediction
 def output_classifier(list_model,classifier,top_n):
+    # Create a dataframe with the top prediction, the certainty of the prediction and two potential alternative models
     df = pd.DataFrame(columns=['Car Make','Probability','Alt1','Alt2'])
     # Change directory to the test images folder
     os.chdir(x + r'\GrabComputerVision\Raw Data\cars_test')
-    filelist=os.listdir()
+    filelist= os.listdir()
     # For each image in the test folder
     for j in filelist:
         test_image = image.load_img(j, target_size=(128,128))

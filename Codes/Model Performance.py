@@ -26,8 +26,8 @@ def load_classifier():
     return(classifier)
  
 # This is the most basic classifier. Output includes the confusion matrix, scores of accuracy, precision and recall. To study model performance only.
-def basic_classifier(classifier):  
-    # Create dataframe to store results
+def basic_classifier(classifier):
+    # Create dataframe to store predicted car model and the true car model
     df = pd.DataFrame(columns=['Predicted','True'])
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
@@ -52,6 +52,7 @@ def basic_classifier(classifier):
             result_class = "%04d" % result_class
             # Returns a dataframe of predicted and true classes of cars for each image.
             df = df.append({'Predicted':result_class,'True':i}, ignore_index = True)
+    # Create an array of prediction and true values to generate the performance scores
     pred = df.as_matrix(columns = ['Predicted'])
     true = df.as_matrix(columns = ['True'])
     # Standard performance measures
@@ -71,9 +72,9 @@ def threshold_classifier(threshold,classifier):
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
     # This is the total images of all classes
-    big_count = 0
+    total_count = 0
     # This is the total images predicted accurately
-    big_positive = 0
+    total_positive = 0
     
     for i in range(196):
         # Total number of images in the class.
@@ -99,10 +100,11 @@ def threshold_classifier(threshold,classifier):
             # Returns the class predicted by the model
             result_class = classifier.predict_classes(test_image)
             result_class = result_class[0] + 1
+            # set check value to the true model class integer
             check = int(i)
             # Return highest probability value
             k = np.amax(result_prob)
-            # Check if the probability passess the confidence threshold outlined. If it doesn't we ignore in from the positive and count counters.
+            # Only consider the accuracy when the probability passess the confidence threshold outlined. If it doesn't we ignore it from the positive and count counters.
             if k > threshold:
                 if result_class == check:
                     positive += 1
@@ -114,24 +116,32 @@ def threshold_classifier(threshold,classifier):
             accuracy = None
         df = df.append({'Car Make':i,'Accuracy':accuracy}, ignore_index = True)
         # Add counts and positives to the total count
-        big_count = big_count + count
-        big_positive = big_positive + positive
+        total_count = total_count + count
+        total_positive = total_positive + positive
     # Calculates the overall accuracy of the model
-    big_accuracy = big_positive / big_count
-    return(threshold,df,big_accuracy)
+    total_accuracy = total_positive / total_count
+    return(threshold,df,total_accuracy)
 
 
 # Produces results from the top n most likely car models.
+# E.g. if top_n = 5, it produces the accuracy of one of the top 5 likeliest car models being the true model in the image
 def top_classifier(top_n,classifier):   
-    big_count_top = 0
-    big_positive_top = 0
+    # Create dataframe to store results
     dft = pd.DataFrame(columns=['Car Make','Accuracy'])
+    # This is the total images of all classes
+    total_count_top = 0
+    # Total number of images predicted accurately in the class.
+    total_positive_top = 0
     
     for i in range(196):
+        # Total number of images in the class.
         count_top = 0
+        # Total number of images predicted accurately in the class.
         positive_top = 0
+        # This rectifies index to be identical to class label.
         i = i + 1
         i = "%04d" % i
+        # Retrieve all images in the class file
         filelist=os.listdir(r'data\validation_set\{}'.format(i))
         for j in filelist:
             # Load and process images to be tested
@@ -158,12 +168,12 @@ def top_classifier(top_n,classifier):
             accuracy_top = None
         dft = dft.append({'Car Make':i,'Accuracy':accuracy_top}, ignore_index = True)
         # Add counts and positives to the total count
-        big_count_top = big_count_top + count_top
-        big_positive_top = big_positive_top + positive_top
+        total_count_top = total_count_top + count_top
+        total_positive_top = total_positive_top + positive_top
     # Calculates the overall accuracy of the mdoel
-    big_accuracy_top = big_positive_top / big_count_top
+    total_accuracy_top = total_positive_top / total_count_top
     
-    return(top_n, dft,big_accuracy_top)
+    return(top_n, dft,total_accuracy_top)
     
 if __name__ == '__main__':
     c = load_classifier()

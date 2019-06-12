@@ -8,14 +8,14 @@ There are two variations to this model that can add value to the baseline result
 
 The first is the threshold model. Since the CNN assigns a probability to each car model, we are able to determine the certainty with which each prediction is made.
 For example, this takes a user-specified threshold value, n, and only displays prediction where the model is at least n% certain of its prediction.
-This leads to marked improvements to the accuracy - more than doubles to approximately 31% for results where the model is at least 80% certain of its prediction.
+This leads to marked improvements to the accuracy - doubles to approximately 31% for results where the model is at least 80% certain of its prediction.
 
 The second variation is the top_n model. Based on the probability assigned to each car model, we can also determine the most likely car models in the image.
-For example, this model takes a user-specified top n models and produces the accuracy of the model to to correctly predict the true car model based on its top n predictions.
+For example, this model takes a user-specified top n likeliest car models and produces the accuracy of the model to to correctly predict the true car model based on its top n predictions.
 The top 5 model can accurately predict the true car make 39% of the time.
 
 With further refinements, the baseline model accuracy can potentially be improved upon. 
-With this, the accuracy of the 2 refined model can hopefully be near perfect, reducing error rates significantly in these application.
+With this, the accuracy of the 2 variation model can hopefully be near perfect, reducing error rates significantly in these applications.
 
 The codes in this project are in the form of functions. This should hopefully ease the understanding, re-usability and flexibility of the code to be utilised under different conditions.
 The program guide file briefly describes each of the functions executed in the model.
@@ -60,4 +60,4 @@ Notably, this may burden honest users. Therefore, it should be complemented by t
 1. Done at random (Users only have to take a photo for 1 in 100 rides perhaps)
 2. Only for drivers that hit bonuses often (reduces the need for numerous photos and is much more targeted)
 3. Provide a voucher/GrabReward/GrabPoints for riders who have to take photos (incentivise riders to be part of the fraud prevention movement in Grab)
-These steps will hopefully impede fradulent practices in the use of Grab's services that aims to rewards honest drivers.
+These steps will hopefully impede fradulent practices in the use of Grab's incentive mechanism that aims to rewards honest drivers.

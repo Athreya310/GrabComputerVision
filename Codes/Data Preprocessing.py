@@ -4,10 +4,10 @@ import scipy.io
 import cv2 as cv
 import random
 
-# USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
+# USER INPUT REQUIRED - Set x as the working directory to where the folder downloaded from github is saved.
 x = r'C:\Users\ASUS\Documents'
 
-# function that creates a folder if it does not exist
+# Creates a folder if it does not exist. These folders will be used to store the processed images
 def create_folder(folder):
     if os.path.exists(folder) == False:
         os.makedirs(folder)
@@ -57,6 +57,7 @@ def extract_test_data():
     transform_test_data(imgs, bboxes)
 
 # Part 2: Transforming and saving the data into folders sorted by class
+# Function arguments: imgs - list of image names, labels - list of label names of each image, bboxes - list of bounding boxes of each image.
 def transform_train_data(imgs, labels, bboxes):
     # This is where the raw images are saved
     raw_folder = 'cars_train'
@@ -70,6 +71,7 @@ def transform_train_data(imgs, labels, bboxes):
         img = imgs[i]
         label = labels[i]
         (x1, y1, x2, y2) = bboxes[i]
+        # Path to image in raw folder
         raw_path = os.path.join(raw_folder, img)
         raw_image = cv.imread(raw_path)
         height, width = raw_image.shape[:2]
@@ -88,12 +90,14 @@ def transform_train_data(imgs, labels, bboxes):
         sort_path = os.path.join(sort_folder, label)
         if os.path.exists(sort_path) == False:
             os.makedirs(sort_path)
+        # Path to image location in sorted folder
         sort_path = os.path.join(sort_path, img)
         # Crop images and write to folders to model
         crop_image = raw_image[y1:y2, x1:x2]
         sort_img = cv.resize(src=crop_image, dsize=(img_height, img_width))
         cv.imwrite(sort_path, sort_img)
 
+# Function arguments: imgs - list of image names, bboxes - list of bounding boxes of each image.
 def transform_test_data(imgs, bboxes):
     raw_folder = 'cars_test'
     sort_folder = 'data/test_set'
@@ -105,16 +109,20 @@ def transform_test_data(imgs, bboxes):
         raw_path = os.path.join(raw_folder, img)
         raw_image = cv.imread(raw_path)
         height, width = raw_image.shape[:2]
+        # Path to image location in sorted folder
         sort_path = os.path.join(sort_folder, img)
+        # Crop images and write to folders to model
         crop_image = raw_image[y1:y2, x1:x2]
         sort_img = cv.resize(src=crop_image, dsize=(img_height, img_width))
         cv.imwrite(sort_path, sort_img)
 
-# Change directory to the data folder
-os.chdir(x + r'\GrabComputerVision\Raw Data')
+
 
 if __name__ == '__main__':
-
+    
+    # Change directory to the data folder
+    os.chdir(x + r'\GrabComputerVision\Raw Data')
+    
     create_folder('data/training_set')
     create_folder('data/validation_set')
     create_folder('data/test_set')

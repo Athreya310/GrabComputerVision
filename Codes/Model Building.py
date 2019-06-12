@@ -10,6 +10,8 @@ from keras.preprocessing.image import ImageDataGenerator
 # USER INPUT REQUIRED - Set x as the working directory to the folder where the folder downloaded from github is saved.
 x = r'C:\Users\ASUS\Documents'
 
+# This function loads images from the folder and prepares it for the CNN. 
+# Function arguments: train_path - path to training set class folders, valid_path - path to validation set class folders
 def load_image(train_path, valid_path):
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
@@ -33,7 +35,8 @@ def load_image(train_path, valid_path):
                                                 class_mode = 'categorical')
     return(training_set,valid_set)
 
-
+# Creates the CNN classifier
+# Function arguments: activ - activation function for final dense layer, drop - dropout value, opt - optimizer algorithm, ls - loss function, mets - performance metrics 
 def create_classifier(activ, drop, opt, ls, mets):
     # Initialising the CNN
     classifier = Sequential()
@@ -63,7 +66,8 @@ def create_classifier(activ, drop, opt, ls, mets):
     
     return(classifier)
     
-    
+# Maps the CNN to the training set
+# Function arguments: classifier - classifier model name, train - processed training set from first function, valid - processed validation set from first function
 def map_classifier(classifier, train, validation):
     # Fitting the model to the training set
     classifier.fit_generator(train,
@@ -71,7 +75,9 @@ def map_classifier(classifier, train, validation):
                     epochs = 15,
                     validation_data = validation,
                     validation_steps = 50)
-
+    
+# Saves the CNN model and weights
+# Function arguments: classifier - classifier model name
 def save_classifier(classifier):
     # serialize model to JSON
     # Change directory to the model specs folder
