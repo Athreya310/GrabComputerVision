@@ -1,6 +1,6 @@
 import os
 from keras.models import Sequential
-from keras.layers import Convolution2D
+from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
@@ -13,6 +13,7 @@ x = r'C:\Users\ASUS\Documents'
 # This function loads images from the folder and prepares it for the CNN. 
 # Function arguments: train_path - path to training set class folders, valid_path - path to validation set class folders
 def load_image(train_path, valid_path):
+    print('Loading images')
     # Change directory to the data folder
     os.chdir(x + r'\GrabComputerVision\Raw Data')
     # This is image augmentation. It alters the images creating a larger sample to test on. This reduces overfitting
@@ -38,25 +39,26 @@ def load_image(train_path, valid_path):
 # Creates the CNN classifier
 # Function arguments: activ - activation function for final dense layer, drop - dropout value, opt - optimizer algorithm, ls - loss function, mets - performance metrics 
 def create_classifier(activ, drop, opt, ls, mets):
+    print('Creating classifier')
     # Initialising the CNN
     classifier = Sequential()
     
     # Step 1 - Convolution
-    classifier.add(Convolution2D(32, (3, 3), input_shape = (128, 128, 3), activation = 'relu'))
+    classifier.add(Conv2D(32, (3, 3), input_shape = (128, 128, 3), activation = 'relu'))
     
     # Step 2 - Pooling
     classifier.add(MaxPooling2D(pool_size = (2, 2)))
     
     # Adding a second convolutional layer
-    classifier.add(Convolution2D(32, 3, 3, activation = 'relu'))
+    classifier.add(Conv2D(32, 3, 3, activation = 'relu'))
     classifier.add(MaxPooling2D(pool_size = (2, 2)))
     
     # Step 3 - Flattening
     classifier.add(Flatten())
     
     # Step 4 - Full connection
-    classifier.add(Dense(output_dim = 512, activation = 'relu'))
-    classifier.add(Dense(output_dim = 196, activation = activ))
+    classifier.add(Dense(units = 512, activation = 'relu'))
+    classifier.add(Dense(units = 196, activation = activ))
     
     # Step 5 - Dropout
     classifier.add(Dropout(drop))
@@ -69,6 +71,7 @@ def create_classifier(activ, drop, opt, ls, mets):
 # Maps the CNN to the training set
 # Function arguments: classifier - classifier model name, train - processed training set from first function, valid - processed validation set from first function
 def map_classifier(classifier, train, validation):
+    print('Mapping classifier')
     # Fitting the model to the training set
     classifier.fit_generator(train,
                     steps_per_epoch = 200,

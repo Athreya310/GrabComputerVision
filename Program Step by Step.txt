@@ -67,6 +67,8 @@ iv. top_classifier
 Generates top n predicted results based on the model. The accuracy of the top n models can be tested.
 E.g. if n = 5, the function will display accuracy score of model if at least one of the 5 most likely car models according to the model is the true car model of image.
 
+Note: The performance of these classifiers will be written to the scores.txt file in the Model Specs folder.
+
 
 Part 5 - Testing the model on a new set of images + user interface
 Run the program 'GrabComputerVision\Codes\Model Testing.py'

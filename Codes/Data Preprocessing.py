@@ -14,6 +14,7 @@ def create_folder(folder):
         
 # Part 1: Extracting the data from the raw files
 def extract_train_data():
+    print('Extracting training data...')
     cars = scipy.io.loadmat('devkit/cars_train_annos')
     annotations = cars['annotations']
     annotations = np.transpose(annotations)
@@ -35,9 +36,11 @@ def extract_train_data():
         img = i[0][5][0]
         bboxes.append((bbox_x1, bbox_y1, bbox_x2, bbox_y2))
         imgs.append(img)
+    print('Training data extracted.')
     transform_train_data(imgs, labels, bboxes)
 
 def extract_test_data():
+    print('Extracting test data...')
     cars = scipy.io.loadmat('devkit/cars_test_annos')
     annotations = cars['annotations']
     annotations = np.transpose(annotations)
@@ -54,11 +57,13 @@ def extract_test_data():
         img = i[0][4][0]
         bboxes.append((bbox_x1, bbox_y1, bbox_x2, bbox_y2))
         imgs.append(img)
+    print('Test data extracted.')
     transform_test_data(imgs, bboxes)
 
 # Part 2: Transforming and saving the data into folders sorted by class
 # Function arguments: imgs - list of image names, labels - list of label names of each image, bboxes - list of bounding boxes of each image.
 def transform_train_data(imgs, labels, bboxes):
+    print('Transforming and migrating training data...')
     # This is where the raw images are saved
     raw_folder = 'cars_train'
     # Randomly select 80% of the images into the training set
@@ -96,9 +101,11 @@ def transform_train_data(imgs, labels, bboxes):
         crop_image = raw_image[y1:y2, x1:x2]
         sort_img = cv.resize(src=crop_image, dsize=(img_height, img_width))
         cv.imwrite(sort_path, sort_img)
+    print('Training data transformed and migrated.')
 
 # Function arguments: imgs - list of image names, bboxes - list of bounding boxes of each image.
 def transform_test_data(imgs, bboxes):
+    print('Transforming and migrating test data...')
     raw_folder = 'cars_test'
     sort_folder = 'data/test_set'
     num_samples = len(imgs)
@@ -115,6 +122,7 @@ def transform_test_data(imgs, bboxes):
         crop_image = raw_image[y1:y2, x1:x2]
         sort_img = cv.resize(src=crop_image, dsize=(img_height, img_width))
         cv.imwrite(sort_path, sort_img)
+    print('Test data transformed and migrated.')
 
 
 
@@ -131,3 +139,4 @@ if __name__ == '__main__':
     img_width, img_height = 224, 224
     extract_train_data()
     extract_test_data()
+    print('This programme is finished.')

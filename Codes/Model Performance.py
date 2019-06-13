@@ -27,6 +27,7 @@ def load_classifier():
  
 # This is the most basic classifier. Output includes the confusion matrix, scores of accuracy, precision and recall. To study model performance only.
 def basic_classifier(classifier):
+    print('Executing basic classifier...')
     # Create dataframe to store predicted car model and the true car model
     df = pd.DataFrame(columns=['Predicted','True'])
     # Change directory to the data folder
@@ -67,6 +68,7 @@ def basic_classifier(classifier):
 # The threshold sets the lower bound of confidence in images shown. 
 # E.g. 0.8 shows accuracy of results where the model was at least 80% certain of prediction.
 def threshold_classifier(threshold,classifier):  
+    print('Executing threshold classifier...')
     # Create dataframe to store results
     df = pd.DataFrame(columns=['Car Make','Accuracy'])
     # Change directory to the data folder
@@ -126,6 +128,7 @@ def threshold_classifier(threshold,classifier):
 # Produces results from the top n most likely car models.
 # E.g. if top_n = 5, it produces the accuracy of one of the top 5 likeliest car models being the true model in the image
 def top_classifier(top_n,classifier):   
+    print('Executing top_n classifier...')
     # Create dataframe to store results
     dft = pd.DataFrame(columns=['Car Make','Accuracy'])
     # This is the total images of all classes
@@ -182,6 +185,7 @@ if __name__ == '__main__':
     top_models, df2, acc_top = top_classifier(5,c)
 
 # Write results to a text file
+print('Writing results to scores.txt')
 os.chdir(x + r'\GrabComputerVision\Model Specs')
 f= open("scores.txt","w+")
 f.write('1. This is the basic performance evaluation of the validation set:\n')

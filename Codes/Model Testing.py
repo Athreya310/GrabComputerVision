@@ -40,6 +40,7 @@ def load_classifier():
 
 # Function arguments: list_model - list of car model names, classifier - classifier model name, top_n = integer to retun top n likeliest prediction
 def output_classifier(list_model,classifier,top_n):
+    print('Predicting test images')
     # Create a dataframe with the top prediction, the certainty of the prediction and two potential alternative models
     df = pd.DataFrame(columns=['Car Make','Probability','Alt1','Alt2'])
     # Change directory to the test images folder
