@@ -63,3 +63,9 @@ Notably, this may burden honest users. Therefore, it should be complemented by t
 2. Only for drivers that hit bonuses often (reduces the need for numerous photos and is much more targeted)
 3. Provide a voucher/GrabReward/GrabPoints for riders who have to take photos (incentivise riders to be part of the fraud prevention movement in Grab)
 These steps will hopefully impede fradulent practices in the use of Grab's incentive mechanism that aims to rewards honest drivers.
+
+
+Part C - About Me
+
+I believe that this challenge/potential job opportunity poses a unique opportunity for me to complement my intermediate understanding of machine learning algorithms with some degree of expertise in economics, particularly policy-making/strategy-building.
+I hope that my knowledge in both areas can help me to contribute to the most efficient and strategic applications to the machine learning models built.
